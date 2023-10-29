@@ -1,7 +1,8 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
+const mongoURI = 'mongodb+srv://Piyakorn:ZTLBDSsRKJOYGTQd@project01.g7ummbq.mongodb.net/Users'; 
 
-mongoose.connect('mongodb+srv://Piyakorn:ZTLBDSsRKJOYGTQd@project01.g7ummbq.mongodb.net/Users', {
+mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
@@ -11,5 +12,9 @@ mongoose.connect('mongodb+srv://Piyakorn:ZTLBDSsRKJOYGTQd@project01.g7ummbq.mong
 .catch(err => {
   console.error('Error connecting to MongoDB:', err);
 });
+// const store = new MongoDBSession({
+//   uri: mongoURI,
+//   collection: "mySessions",
+// })
 
 module.export = mongoose;
