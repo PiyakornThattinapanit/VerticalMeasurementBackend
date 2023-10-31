@@ -5,14 +5,14 @@ const User = require('../models/User')
 const { ConnectionClosedEvent } = require('mongodb')
 const LocalStrategy = require('passport-local').Strategy
 
-function isLoggedIn(req,res,next) {
-    if (!req.isAuthenticated()){
-        return res.status(401).json({'message': 'not logged-in'})
-    }
-    else {
-        return next()
-    }
-}
+// function isLoggedIn(req,res,next) {
+//     if (!req.isAuthenticated()){
+//         return res.status(401).json({'message': 'not logged-in'})
+//     }
+//     else {
+//         return next()
+//     }
+// }
 
 module.exports = {
     register : (req, res, next) => {
@@ -56,4 +56,4 @@ module.exports = {
     }
 }
 
-module.exports.isLoggedIn = isLoggedIn
+// module.exports.isLoggedIn = isLoggedIn
