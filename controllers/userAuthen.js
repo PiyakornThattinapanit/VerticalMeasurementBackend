@@ -3,16 +3,8 @@ const passport = require('passport')
 const mongoose = require('mongoose')
 const User = require('../models/User')
 const { ConnectionClosedEvent } = require('mongodb')
+const { ObjectID } = require('bson')
 const LocalStrategy = require('passport-local').Strategy
-
-// function isLoggedIn(req,res,next) {
-//     if (!req.isAuthenticated()){
-//         return res.status(401).json({'message': 'not logged-in'})
-//     }
-//     else {
-//         return next()
-//     }
-// }
 
 module.exports = {
     register : (req, res, next) => {
@@ -38,7 +30,8 @@ module.exports = {
         if (!checkExistAcc){
             return res.status(401).json({ message: 'Invalid credentials' });
         }
-        return res.json({'message': `successfully login as (${req.user.username})`})
+        return res.json({'message': `successfully login as (${req.user.username})`,
+                            'userID': `${req.user._id}`})
     },
     logout : (req, res) => {
         req.logout((err) => {
@@ -55,5 +48,3 @@ module.exports = {
         return res.json(req.User)
     }
 }
-
-// module.exports.isLoggedIn = isLoggedIn

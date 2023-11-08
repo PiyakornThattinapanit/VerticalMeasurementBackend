@@ -53,10 +53,10 @@ app.get("/", (req,res) => {
     console.log(req.session.id);
     res.send("Hello Session yovyov");
 })
-app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.use('/auth', authRouter)
 app.use('/addlist',addListTester)
 
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.listen(port, () => {
     console.log(`server running on port ${port}`);
 })
