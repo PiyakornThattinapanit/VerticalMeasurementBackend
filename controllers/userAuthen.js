@@ -33,6 +33,8 @@ module.exports = {
         return res.json({'message': `successfully login as (${req.user.username})`,
                             'userID': `${req.user._id}`})
     },
+    /* The `logout` function is used to log out the user from the application. It takes in the `req`
+    (request) and `res` (response) objects as parameters. */
     logout : (req, res) => {
         req.logout((err) => {
             if (err) {

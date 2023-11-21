@@ -1,6 +1,7 @@
 
 
 function isLoggedIn(req,res,next) {
+    console.log(req)
     if (!req.isAuthenticated()){
         return res.status(401).json({'message': 'not logged-in'})
     }
@@ -9,4 +10,15 @@ function isLoggedIn(req,res,next) {
     }
 }
 
-module.exports.isLoggedIn = {isLoggedIn};
+function getUserTester(req,res,next) {
+    console.log(req)
+    if (!req.isAuthenticated()){
+        return res.status(401).json({'message': 'not-logged-in'})
+    }
+    else {
+        next();
+        return res.json(req.usertester);
+    }
+}
+
+module.exports.isLoggedIn = {isLoggedIn,getUserTester};
