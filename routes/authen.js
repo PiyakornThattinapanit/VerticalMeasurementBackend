@@ -11,7 +11,7 @@ const {isLoggedIn} = require('../config/middleware')
 router.post('/register', authenControl.register);
 router.post('/login', passport.authenticate('local'),authenControl.login);
 router.post('/logout', isLoggedIn.isLoggedIn,authenControl.logout);
-router.get('/getuser' , isLoggedIn.isLoggedIn, getuser.getUser);
+router.get('/getuser' , isLoggedIn.isLoggedIn,getuser.getUser);
 
 
 module.exports = router;

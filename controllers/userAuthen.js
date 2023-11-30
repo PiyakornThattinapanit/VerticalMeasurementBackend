@@ -31,7 +31,8 @@ module.exports = {
             return res.status(401).json({ message: 'Invalid credentials' });
         }
         return res.json({'message': `successfully login as (${req.user.username})`,
-                            'userID': `${req.user._id}`})
+                            'userID': `${req.user._id}`
+                        })
     },
     /* The `logout` function is used to log out the user from the application. It takes in the `req`
     (request) and `res` (response) objects as parameters. */
