@@ -25,11 +25,23 @@ module.exports = {
         // const val = await dataTester.save()
     },
     getalltester : async(req, res, next) => {
-            console.log("//path getalluser...")
-            const checkExistTester = await userTester.find({userId: req.user._id});
-            if (!checkExistTester) {
-                return res.status(401).json({message:'Failed to find Tester'});
-            }
-            return res.json(checkExistTester);
+        console.log("//path getalluser...")
+        const checkExistTester = await userTester.find({userId: req.user._id});
+        if (!checkExistTester) {
+            return res.status(401).json({message:'Failed to find Tester'});
+        }
+        return res.json(checkExistTester);
+        },
+    deletetester : async(req, res, next) => {
+        console.log('API Delete Tester')
+        const tester_id = req.params.tester_id;
+        console.log(tester_id);
+        if (userTester.findOne({_id: tester_id})) {
+            await userTester.deleteOne({_id: tester_id});
+            // await userTester.deleteMany({_id: tester_id});
+            res.json({'message':'Tester deleted already'})
+        } else {
+            res.status(404).json({ message: 'User not found' });
+        }
         }
     }

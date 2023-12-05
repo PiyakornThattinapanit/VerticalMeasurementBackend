@@ -9,5 +9,6 @@ const getuser = require('../controllers/getUser')
 
 router.post('/addusertester', isLoggedIn.isLoggedIn,addlistControl.addtester);
 router.get('/getallusertester', isLoggedIn.isLoggedIn,addlistControl.getalltester);
+router.delete('/deleteusertester/:tester_id', isLoggedIn.isLoggedIn,addlistControl.deletetester);
 
 module.exports = router;
