@@ -5,6 +5,7 @@ function isLoggedIn(req,res,next) {
         return res.status(401).json({'message': 'not logged-in'})
     }
     else {
+        console.log(req.body);
         return next()
     }
 }

@@ -9,5 +9,5 @@ const userTesterSchema = new Schema({
     userId: {type: Schema.Types.ObjectId, ref:'Users.users'}
 });
 
-userTesterSchema.plugin(passportLocalMongoose)
-module.exports = mongoose.model("usertesters",userTesterSchema)
+userTesterSchema.plugin(passportLocalMongoose);
+module.exports = mongoose.model("usertesters",userTesterSchema);

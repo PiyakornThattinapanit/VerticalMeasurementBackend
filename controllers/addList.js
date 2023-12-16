@@ -25,7 +25,7 @@ module.exports = {
         // const val = await dataTester.save()
     },
     getalltester : async(req, res, next) => {
-        console.log("//path getalluser...")
+        console.log("/path getalluser...")
         const checkExistTester = await userTester.find({userId: req.user._id});
         if (!checkExistTester) {
             return res.status(401).json({message:'Failed to find Tester'});

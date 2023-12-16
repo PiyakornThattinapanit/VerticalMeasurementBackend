@@ -18,6 +18,7 @@ const swaggerFile = require('./swagger-output.json')
 
 const authRouter = require('./routes/authen');
 const addListTester = require('./routes/addlistuser');
+const testerInfo = require('./routes/testerInfo-route');
 
 const sessionConfig = {
     name: 'session-id',
@@ -53,6 +54,7 @@ app.get("/", (req,res) => {
     console.log(req.session.id);
     res.send("Hello Session yovyov");
 })
+app.use('/testerinfo',testerInfo)
 app.use('/auth', authRouter)
 app.use('/addlist',addListTester)
 
