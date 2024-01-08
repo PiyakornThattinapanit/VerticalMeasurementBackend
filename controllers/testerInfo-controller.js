@@ -2,7 +2,11 @@ const express = require('express');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const testerInfoModel = require('../models/testerInfo');
+const { json } = require('body-parser');
+const { findOne } = require('../models/testerInfo');
 const LocalStrategy = require('passport-local').Strategy;
+const user = require('../models/User');
+
 
 module.exports = {
     inserttesterinfo : async(req, res, next) => {
@@ -34,5 +38,34 @@ module.exports = {
             return res.status(401).json({message:'No Result Info Tester'});
         }
         return res.json(showResultInfo);
+    },
+    authensensor : async(req,res,next) => {
+        console.log('/authentication sensor...');
+        const {macaddress,tester_id} = req.body;
+        const dataAuthorize = ({
+            macaddress : macaddress,
+            tester_id : tester_id
+        })// save to DB
+        console.log(dataAuthorize);
+        return res.status(200).json({message:'success'});
+    },
+    reqtosensor : async(req,res,next) => {
+        console.log('/sent request to sensor...');
+        const showResultUser = await user.find({'macaddress':'84:F3:EB:48:F7:5D'});
+        console.log(showResultUser);
+        console.log(showResultUser[0].macaddress);
+        let stateWorking = "on";
+        console.log(stateWorking);
+        res.set('Content-Type','text/plain');
+        res.send(stateWorking);
+    },
+    resfromsensor : async(req,res,next) => {
+        console.log('/recieve result from sensor...');
+        const postResult = req.body;
+        console.log("Response From Sensor:",postResult);
+        return res.status(200).json({message:"dfdfd"});
+    },
+    getdatafromsensor : async(req,res,next) => {
+        console.log("//Get Data Sensor Path...");
     }
 }

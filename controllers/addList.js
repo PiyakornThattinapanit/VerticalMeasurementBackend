@@ -12,7 +12,8 @@ module.exports = {
         const dataTester = new userTester({
             fname_tester: fname_tester,
             lname_tester: lname_tester,
-            userId: req.user._id
+            userId: req.user._id,
+            serial: req.user.macaddress
         });
         let resultTester = await userTester.findOne({'fname': fname_tester, 'lname':lname_tester})
         if (!resultTester) {

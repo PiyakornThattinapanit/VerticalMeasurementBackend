@@ -1,25 +1,36 @@
 const express = require('express');
-const session = require('express-session');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const port = 3001;
 const app = express();
-// const test = require('./routes/user')
+app.use(cors(port));
+app.use(bodyParser.json({ type: 'application/json'}));
 
-// app.use('/check',test);
+var led = true;
 
-app.use(
-    session({
-        secret: "key that will sign cookie", //string secret on browser
-        resave: false,
-        saveUninitialized: false, //why the browser not see cookie
-    })
-);
-
-app.get("/", (req,res) => {
-    req.session.isAuth = true;
-    console.log(req.session);
-    console.log(req.session.id);
-    res.send("Hello Session yovyov");
+app.post('/api',(req,res) => {
+    consolr.log(led);
+    console.log('in');
+    res.set('Content-Type','text/plain');
+    res.send({value :!led});
 })
-
-app.listen(3001, () => {
-    console.log("Server 3001")
+app.post('/',(req,res) => {
+    consolr.log(led);
+    console.log('in');
+    res.set('Content-Type','text/plain');
+    res.send({value :!led});
+})
+app.get('/api',(req,res) => {
+    console.log("//Get api...");
+        res.set('Content-Type','text/plain');
+        if (led) {
+            res.send({value : 1});
+        }
+        else {
+            res.send({value : 0});
+        }
+        console.log(led);
+})
+app.listen(port,'0.0.0.0' | 'localhost', function() {
+    console.log("Server running on localhost port : " + port);
 })

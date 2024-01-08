@@ -1,6 +1,7 @@
 
 
 function isLoggedIn(req,res,next) {
+    console.log("Authenticating...")
     if (!req.isAuthenticated()){
         return res.status(401).json({'message': 'not logged-in'})
     }
@@ -17,7 +18,6 @@ function getUserTester(req,res,next) {
     else {
         console.log("//middleware UserTester path...")
         return next();
-        // return res.json(req.usertester);
     }
 }
 

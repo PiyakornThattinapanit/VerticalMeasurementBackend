@@ -6,7 +6,8 @@ const passportLocalMongoose = require('passport-local-mongoose')
 const userTesterSchema = new Schema({
     fname_tester: String,
     lname_tester: String,
-    userId: {type: Schema.Types.ObjectId, ref:'Users.users'}
+    userId: {type: Schema.Types.ObjectId, ref:'Users.users'},
+    serial: String 
 });
 
 userTesterSchema.plugin(passportLocalMongoose);

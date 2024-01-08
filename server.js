@@ -5,9 +5,7 @@ const mongoose = require('mongoose')
 const passport = require('passport');
 const session = require("express-session");
 const LocalStrategy = require('passport-local').Strategy
-// const store = require('./config/db')
 const cors = require('cors')
-// const test = require('./models/addListUser')
 const app = express();
 const port = 3001;
 const bodyParser = require('express').json;
@@ -58,7 +56,11 @@ app.use('/testerinfo',testerInfo)
 app.use('/auth', authRouter)
 app.use('/addlist',addListTester)
 
+
 app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
-app.listen(port, () => {
-    console.log(`server running on port ${port}`);
+// app.listen(port, () => {
+//     console.log(`server running on port ${port}`);
+// })
+app.listen(port,'0.0.0.0' | 'localhost', function() {
+    console.log("Server running on localhost port : " + port);
 })

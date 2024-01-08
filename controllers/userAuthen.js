@@ -8,11 +8,12 @@ const LocalStrategy = require('passport-local').Strategy
 
 module.exports = {
     register : (req, res, next) => {
-        const {fname , lname , username , password , cfpassword} = req.body;
+        const {fname , lname , username , password , cfpassword , macaddress} = req.body;
         const this_user = new User({
             fname: fname,
             lname: lname,
-            username: username
+            username: username,
+            macaddress: macaddress
         })
         User.register(this_user, password, (err) => {
             console.log('check!')
@@ -31,7 +32,8 @@ module.exports = {
             return res.status(401).json({ message: 'Invalid credentials' });
         }
         return res.json({'message': `successfully login as (${req.user.username})`,
-                            'userID': `${req.user._id}`
+                            'userID': `${req.user._id}`,
+                            'macAddress': `${req.user.macaddress}`
                         })
     },
     /* The `logout` function is used to log out the user from the application. It takes in the `req`
