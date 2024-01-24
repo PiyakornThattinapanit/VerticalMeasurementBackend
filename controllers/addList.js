@@ -7,15 +7,15 @@ const LocalStrategy = require('passport-local').Strategy
 
 module.exports = {
     addtester : async(req, res, next) => {
-        // console.log(req.body)
-        const {fname_tester , lname_tester, userId} = req.body;
+        const {fname_tester , lname_tester} = req.body;
         const dataTester = new userTester({
             fname_tester: fname_tester,
             lname_tester: lname_tester,
             userId: req.user._id,
             serial: req.user.macaddress
         });
-        let resultTester = await userTester.findOne({'fname': fname_tester, 'lname':lname_tester})
+        console.log(dataTester);
+        let resultTester = await userTester.findOne({'fname_tester': fname_tester, 'lname_tester':lname_tester})
         if (!resultTester) {
             await dataTester.save();
             console.log(resultTester);

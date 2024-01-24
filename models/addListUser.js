@@ -7,7 +7,7 @@ const userTesterSchema = new Schema({
     fname_tester: String,
     lname_tester: String,
     userId: {type: Schema.Types.ObjectId, ref:'Users.users'},
-    serial: String 
+    serial: {type: Schema.Types.String, ref:'User.users'} 
 });
 
 userTesterSchema.plugin(passportLocalMongoose);

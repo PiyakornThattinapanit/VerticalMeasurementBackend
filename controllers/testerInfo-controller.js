@@ -6,6 +6,8 @@ const { json } = require('body-parser');
 const { findOne } = require('../models/testerInfo');
 const LocalStrategy = require('passport-local').Strategy;
 const user = require('../models/User');
+const userTester = require('../models/addListUser')
+const axios = require('axios');
 
 
 module.exports = {
@@ -45,9 +47,30 @@ module.exports = {
         const dataAuthorize = ({
             macaddress : macaddress,
             tester_id : tester_id
-        })// save to DB
-        console.log(dataAuthorize);
-        return res.status(200).json({message:'success'});
+        })
+        try{
+            console.log('try...')
+            let checkInDB = await userTester.find({'serial': macaddress,'_id':tester_id})
+            if (checkInDB) {
+                // Change IP address when set up.
+                // In Room
+                const espResponse = await axios.post('http://192.168.1.3:80/esp8266', {
+                    dataAuthorize
+                });
+                // Hotspot
+                // const espResponse = await axios.post('http://172.20.10.9:80/esp8266', {
+                //     dataAuthorize
+                // });
+                console.log(espResponse);
+            } else {
+                console.log("Data is not match!")
+            }
+            res.status(200).send({'message':"It's Work"})
+        } catch (error) {
+            console.log(error);
+            return res.status(400).send(error);
+        }
+        // return res.status(200).json({message:'success'});
     },
     reqtosensor : async(req,res,next) => {
         console.log('/sent request to sensor...');
